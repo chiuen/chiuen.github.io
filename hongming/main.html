@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+   <head>
+      <meta name="robots" content="noindex, nofollow" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>TEST</title>
+	  <script>
+         function listen() {
+            //window.moveTo(screen.availLeft, screen.availTop);
+            //window.resizeTo(screen.availWidth, screen.availHeight);
+			window.addEventListener("beforeunload", function(event) {
+              fetch("/close");
+              //event.preventDefault();
+              //event.returnValue = null; //"Any text"; //true; //false;
+              //return null; //"Any text"; //true; //false;
+            });
+			setTimeout(keepalive,3000);
+         }
+		 
+		 function keepalive() {
+		    fetch("/test");
+			setTimeout(keepalive,3000);
+		 }
+      </script>
+   </head>
+   <body onload="listen()">
+      TEST
+   </body>
+</html>
