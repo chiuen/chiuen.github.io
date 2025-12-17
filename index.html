@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9DY015N5LK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9DY015N5LK');
-</script>	
+  <meta charset="utf-8" />
+  <title>My LIFF App</title>
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 </head>
-
 <body>
-	<h1>
-		chiuen94484 測試
-	</h1>
+  <h1 id="message">Loading...</h1>
+
+  <script>
+    async function main() {
+      await liff.init({ liffId: "YOUR_LIFF_ID" });
+      
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
+
+      const profile = await liff.getProfile();
+      document.getElementById("message").innerHTML =
+        `Hello! ${profile.displayName}`;
+    }
+    main();
+  </script>
 </body>
 </html>
